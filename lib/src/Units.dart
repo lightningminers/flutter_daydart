@@ -6,7 +6,7 @@ enum Units {
   H,
   MIN,
   S,
-  DATE,
   MS,
+  DATE,
   Q
 }

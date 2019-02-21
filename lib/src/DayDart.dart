@@ -1,5 +1,6 @@
 import 'dart:core';
 import 'package:flutter_daydart/src/utils.dart';
+import 'package:flutter_daydart/src/Units.dart';
 
 
 const String FORMAT_DEFAULT = 'YYYY-MM-DDTHH:mm:ss';
@@ -152,8 +153,12 @@ class DayDart {
   /**
    * 复制 DayDart 对象
    */
-  DayDart clone(){
-    return wrapper(toDateTime());
+  DayDart clone([DateTime dateTime]){
+    if (dateTime !=null) {
+      return wrapper(dateTime);
+    } else {
+      return wrapper(toDateTime());
+    }
   }
 
   /**
@@ -195,8 +200,8 @@ class DayDart {
   /**
    * 检查另外一个 DayDart 对象是否与当前 DayDart 对象的时间相等
    */
-  isSame(DayDart that, String units){
-
+  isSame(DayDart that, Units units){
+    
   }
 
   /**
@@ -211,5 +216,169 @@ class DayDart {
    */
   isBefore(DayDart that){
     return _date.isBefore(that.toDateTime());
+  }
+
+  /**
+   * 操作时间-增加
+   */
+  DayDart add(int num, Units unit){
+    int y = year();
+    int m = month();
+    int d = date();
+    int h = hour();
+    int min = minute();
+    int s = second();
+    int ms = millisecond();
+    switch (unit) {
+      case Units.Y:
+        return clone(new DateTime(
+          y + num,
+          m,
+          d,
+          h,
+          min,
+          s,
+          ms
+        ));
+        break;
+      case Units.M:
+          int afterMonth = m + num;
+          if (afterMonth <= 12) {
+            // 小于或等于 12 还是当年
+            return clone(new DateTime(y, afterMonth, d, h, min, s, ms));
+          } else {
+            // 大于12 就是第二年了
+            int ad = 12 - m;
+            int bv = num - ad;
+            y = y + 1;
+            if ((bv/12) < 1) {
+              return clone(new DateTime(y, bv, d, h, min, s, ms));
+            } else {
+              double dY = bv / 12;
+              int newY = dY.floor();
+              int absMonth = newY * 12;
+              int newMonth = bv - absMonth;
+              y = y + newY;
+              return clone(new DateTime(y, newMonth, d, h, min, s, ms));
+            }
+          }
+        break;
+      case Units.D:
+        return clone(_date.add(new Duration(days: num)));
+        break;
+      case Units.H: 
+        return clone(_date.add(new Duration(hours:num)));
+        break;
+      case Units.MIN:
+        return clone(_date.add(new Duration(minutes:num)));
+        break;
+      case Units.S:
+        return clone(_date.add(new Duration(seconds: num)));
+        break;
+      case Units.MS:
+        return clone(_date.add(new Duration(milliseconds:num)));
+        break;
+      default:
+    }
+  }
+
+  /**
+   * 操作时间-减少
+   */
+  DayDart subtract(int num, Units unit){
+    int y = year();
+    int m = month();
+    int d = date();
+    int h = hour();
+    int min = minute();
+    int s = second();
+    int ms = millisecond();
+    switch (unit) {
+      case Units.Y:
+        return clone(new DateTime(
+          y - num,
+          m,
+          d,
+          h,
+          min,
+          s,
+          ms
+        ));
+        break;
+      case Units.M:
+        double dY = num / 12;
+        if (dY < 1){
+          // 说明减的月数没有超过一年
+          int rangeM = m - num;
+          if (rangeM < 0) {
+            y = y - 1;
+            m = 12 + rangeM;
+            return clone(new DateTime(
+              y,
+              m,
+              d,
+              h,
+              min,
+              s,
+              ms
+            ));
+          } else {
+            return clone(new DateTime(
+              y,
+              rangeM,
+              d,
+              h,
+              min,
+              s,
+              ms
+            ));
+          }
+        } else {
+          // 减的月数超过了一年
+          int cY = dY.ceil();
+          int bY = dY.floor();
+          int cMonth = num - (12 * bY);
+          int rangeM = m - cMonth;
+          if (rangeM < 0) {
+            m = 12 + rangeM;
+            return clone(new DateTime(
+              y - cY,
+              m,
+              d,
+              h,
+              min,
+              s,
+              ms
+            ));
+          } else {
+            return clone(new DateTime(
+              y - bY,
+              rangeM,
+              d,
+              h,
+              min,
+              s,
+              ms
+            ));
+          }
+        }
+        break;
+      case Units.D:
+        return clone(_date.subtract(new Duration(days: num)));
+        break;
+      case Units.H: 
+        return clone(_date.subtract(new Duration(hours:num)));
+        break;
+      case Units.MIN:
+        return clone(_date.subtract(new Duration(minutes:num)));
+        break;
+      case Units.S:
+        return clone(_date.subtract(new Duration(seconds: num)));
+        break;
+      case Units.MS:
+        return clone(_date.subtract(new Duration(milliseconds:num)));
+        break;
+      default:
+    }
   }
 }

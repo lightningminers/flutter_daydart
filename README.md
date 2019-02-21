@@ -36,6 +36,10 @@ samples, guidance on mobile development, and a full API reference.
   - [分](#分)
   - [秒](#秒)
   - [毫秒](#毫秒)
+- [操作](#操作)
+- [查询](#查询)
+  - [是否之前](#是否之前)
+  - [是否之后](#是否之后)
 - [显示](#显示)
   - [格式化](#格式化)
   - [DateTime 对象](#DateTime-对象)
@@ -182,6 +186,52 @@ DayDart().second();
 
 ```dart
 DayDart().millisecond();
+```
+
+### 操作
+
+我们可以对 `DayDart` 对象增加如下的操作：
+
+```dart
+DayDart().add(2, Units.H).subtract(13, Units.M);
+```
+
+#### 增加
+
+为时间日期进行增加并返回一个新的 `DayDart` 对象。
+
+```dart
+DayDart().add(2, Units.H);
+```
+
+#### 减少
+
+为时间日期进行减少并返回一个新的 `DayDart` 对象。
+
+```dart
+DayDart().subtract(13, Units.M)
+```
+
+### 查询
+
+#### 是否之前
+
+- return bool
+
+检查另外一个 DayDart 对象是否在当前 DayDart 对象时间之前
+
+```dart
+DayDart().isBefore(daydart);
+```
+
+#### 是否之后
+
+- return bool
+
+检查另外一个 DayDart 对象是否在当前 DayDart 对象时间之后
+
+```dart
+DayDart().isAfter(daydart);
 ```
 
 ### 显示
