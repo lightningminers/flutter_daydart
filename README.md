@@ -42,6 +42,7 @@ samples, guidance on mobile development, and a full API reference.
 - [查询](#查询)
   - [是否之前](#是否之前)
   - [是否之后](#是否之后)
+  - [判断是否为 DayDart](判断是否为-DayDart)
 - [显示](#显示)
   - [格式化](#格式化)
   - [DateTime 对象](#DateTime-对象)
