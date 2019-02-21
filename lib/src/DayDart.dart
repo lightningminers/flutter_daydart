@@ -24,6 +24,17 @@ class DayDart {
     this._date = DateTime.parse(iso8601);
   }
 
+  DayDart.fromInt(int year,
+      [int month = 1,
+      int day = 1,
+      int hour = 0,
+      int minute = 0,
+      int second = 0,
+      int millisecond = 0,
+      int microsecond = 0]){
+        this._date = DateTime(year, month, day, hour, minute, second, millisecond, microsecond);
+      }
+  
   /**
    * 检测当前 DayDart 对象是一个有效的 DateTime
    */
@@ -179,5 +190,26 @@ class DayDart {
       }
       return matches[match];
     });
+  }
+
+  /**
+   * 检查另外一个 DayDart 对象是否与当前 DayDart 对象的时间相等
+   */
+  isSame(DayDart that, String units){
+
+  }
+
+  /**
+   * 检查另外一个 DayDart 对象是否在当前 DayDart 对象时间之后
+   */
+  isAfter(DayDart that){
+    return _date.isAfter(that.toDateTime());
+  }
+
+  /**
+   * 检查另外一个 DayDart 对象是否在当前 DayDart 对象时间之前
+   */
+  isBefore(DayDart that){
+    return _date.isBefore(that.toDateTime());
   }
 }

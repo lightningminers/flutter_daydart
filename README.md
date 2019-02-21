@@ -2,6 +2,9 @@
 
 A new Flutter package project.
 
+![https://img.shields.io/github/license/icepy/flutter_daydart.svg](https://img.shields.io/github/license/icepy/flutter_daydart.svg)
+![https://img.shields.io/github/issues/icepy/flutter_daydart.svg](https://img.shields.io/github/issues/icepy/flutter_daydart.svg)
+
 ## Getting Started
 
 This project is a starting point for a Dart
@@ -19,6 +22,7 @@ samples, guidance on mobile development, and a full API reference.
 
 - [解析](#解析)
   - [当前时间](#当前时间)
+  - [原生创建](#原生创建)
   - [时间字符串](#时间字符串)
   - [DateTime 对象](#DateTime-对象)
   - [复制](#复制)
@@ -52,6 +56,14 @@ samples, guidance on mobile development, and a full API reference.
 
 ```dart
 DayDart()
+```
+
+#### 原生创建
+
+可以像 DateTime 一样的创建 DayDart 对象
+
+```dart
+DayDart(2019,12,12);
 ```
 
 #### 时间字符串

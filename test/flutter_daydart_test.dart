@@ -9,5 +9,5 @@ void main(){
   final daydart3 = DayDart.fromString('2019-02-21');
 
   final fm = DayDart().format(fm: 'YYYY-MM-DD HH:mm:ss');
-  print(fm);
+  
 }
