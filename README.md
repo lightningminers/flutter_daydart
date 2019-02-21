@@ -236,6 +236,12 @@ DayDart().isBefore(daydart);
 DayDart().isAfter(daydart);
 ```
 
+#### 判断是否为 DayDart
+
+```dart
+DayDart.isDayDart(daydart)
+```
+
 ### 显示
 
 格式化 DayDart 对象并展示。

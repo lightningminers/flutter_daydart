@@ -36,6 +36,10 @@ class DayDart {
         this._date = DateTime(year, month, day, hour, minute, second, millisecond, microsecond);
       }
   
+  static bool isDayDart(daydart){
+    return daydart is DayDart;
+  }
+
   /**
    * 检测当前 DayDart 对象是一个有效的 DateTime
    */
