@@ -37,6 +37,8 @@ samples, guidance on mobile development, and a full API reference.
   - [秒](#秒)
   - [毫秒](#毫秒)
 - [操作](#操作)
+  - [增加](#增加)
+  - [减少](#减少)
 - [查询](#查询)
   - [是否之前](#是否之前)
   - [是否之后](#是否之后)
