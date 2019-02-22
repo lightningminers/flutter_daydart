@@ -8,19 +8,29 @@ void main(){
   final daydart2 = DayDart.fromDateTime(new DateTime.now());
   final now = new DateTime.now();
   final daydart3 = DayDart.fromString('2019-02-21');
-  bool isD = daydart.isAfterValue(2018, Units.Y);
-  print(isD);
+  final daydart4 =  DayDart.fromString('2018-02-21');
 
-  final fm = DayDart().format(fm: 'YYYY-MM-DD HH:mm:ss');
+  test('format-> 测试格式化YYYY-MM-DD', (){
+    final fm = daydart3.format(fm: 'YYYY-MM-DD');
+    expect(fm, '2019-02-21');
+  });
 
-  // print(daydart);
-  // print(daydart.add(1, Units.Y));
-  // print(daydart.add(28, Units.M));
-  // print(daydart.add(2, Units.H));
+  test('isAfterValue-> 测试2018在2019之后', () {
+    bool isD = daydart3.isAfterValue(2018, Units.Y);
+    expect(isD, true);
+  });
 
-  print(daydart.subtract(1, Units.M));
-  print(daydart.subtract(2, Units.M));
-  print(daydart.subtract(13, Units.M).add(2, Units.H));
-  print(daydart.subtract(15, Units.M));
-  print(daydart.subtract(30, Units.M));
+  test('isBeforeValue-> 测试2020在2019之前', (){
+    bool isD = daydart3.isBeforeValue(2020, Units.Y);
+    expect(isD, true);
+  });
+
+  test('isSameValue-> 测试2019是否等于当前的年', (){
+    bool isD = daydart3.isSameValue(2019, Units.Y);
+    expect(isD, true);
+  });
+
+  test('static isDayDart-> 测试传入一个对象是否是 DayDart', (){
+    expect(DayDart.isDayDart(daydart), true);
+  });
 }
