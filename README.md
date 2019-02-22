@@ -40,6 +40,7 @@ samples, guidance on mobile development, and a full API reference.
   - [增加](#增加)
   - [减少](#减少)
 - [查询](#查询)
+  - [是否相等](#是否相等)
   - [是否之前](#是否之前)
   - [是否之后](#是否之后)
   - [判断是否为 DayDart](判断是否为-DayDart)
@@ -217,24 +218,62 @@ DayDart().subtract(13, Units.M)
 
 ### 查询
 
+Value 系列比对详情如下：
+
+| enum | Output           |
+| ------ | ---------------- |
+| Units.Y   | bool             |
+| Units.M   | bool             |
+| Units.D   | bool             |
+| Units.H   | bool             |
+| Units.MIN   | bool             |
+
+#### 是否相等
+
+- return bool
+
+检查另外一个 DayDart 对象是否与当前 DayDart 对象的时间相等。
+
+```dart
+DayDart().isSame(daydart);
+```
+
+- return bool
+
+```dart
+DayDart().isSameValue(2019, Units.Y);
+```
+
 #### 是否之前
 
 - return bool
 
-检查另外一个 DayDart 对象是否在当前 DayDart 对象时间之前
+检查另外一个 DayDart 对象是否在当前 DayDart 对象时间之前。
 
 ```dart
 DayDart().isBefore(daydart);
+```
+
+- return bool
+
+```dart
+DayDart().isBeforeValue(2019, Units.Y);
 ```
 
 #### 是否之后
 
 - return bool
 
-检查另外一个 DayDart 对象是否在当前 DayDart 对象时间之后
+检查另外一个 DayDart 对象是否在当前 DayDart 对象时间之后。
 
 ```dart
 DayDart().isAfter(daydart);
+```
+
+- return bool
+
+```dart
+DayDart().isAfterValue(2019, Units.Y);
 ```
 
 #### 判断是否为 DayDart

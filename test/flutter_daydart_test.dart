@@ -8,6 +8,8 @@ void main(){
   final daydart2 = DayDart.fromDateTime(new DateTime.now());
   final now = new DateTime.now();
   final daydart3 = DayDart.fromString('2019-02-21');
+  bool isD = daydart.isAfterValue(2018, Units.Y);
+  print(isD);
 
   final fm = DayDart().format(fm: 'YYYY-MM-DD HH:mm:ss');
 

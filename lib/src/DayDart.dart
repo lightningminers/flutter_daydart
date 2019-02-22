@@ -35,7 +35,7 @@ class DayDart {
       int microsecond = 0]){
         this._date = DateTime(year, month, day, hour, minute, second, millisecond, microsecond);
       }
-  
+
   static bool isDayDart(daydart){
     return daydart is DayDart;
   }
@@ -204,22 +204,95 @@ class DayDart {
   /**
    * 检查另外一个 DayDart 对象是否与当前 DayDart 对象的时间相等
    */
-  isSame(DayDart that, Units units){
-    
+  bool isSame(DayDart that){
+    return _date.isAtSameMomentAs(that.toDateTime());
+  }
+
+  /**
+   * 检查另外一个时间数值 是否与当前 DayDart 相应枚举相等
+   */
+  bool isSameValue(int that, Units unit){
+    switch (unit) {
+      case Units.Y:
+        return that == year();
+        break;
+      case Units.M:
+        return that == month();
+        break;
+      case Units.D:
+        return that == date();
+        break;
+      case Units.H:
+        return that == hour();
+        break;
+      case Units.MIN:
+        return that == minute();
+        break;
+      default:
+    }
   }
 
   /**
    * 检查另外一个 DayDart 对象是否在当前 DayDart 对象时间之后
    */
-  isAfter(DayDart that){
+  bool isAfter(DayDart that){
     return _date.isAfter(that.toDateTime());
+  }
+
+  /**
+   * 检查另外一个时间数值 是否在当前 DayDart 相应枚举之后
+   */
+  bool isAfterValue(int that, Units unit){
+    switch (unit) {
+      case Units.Y:
+        return that < year();
+        break;
+      case Units.M:
+        return that < month();
+        break;
+      case Units.D:
+        return that < date();
+        break;
+      case Units.H:
+        return that < hour();
+        break;
+      case Units.MIN:
+        return that < minute();
+        break;
+      default:
+
+    }
   }
 
   /**
    * 检查另外一个 DayDart 对象是否在当前 DayDart 对象时间之前
    */
-  isBefore(DayDart that){
+  bool isBefore(DayDart that){
     return _date.isBefore(that.toDateTime());
+  }
+
+  /**
+   * 检查另外一个时间数值 是否在当前 DayDart 相应枚举之前
+   */
+  bool isBeforeValue(int that, Units unit){
+    switch (unit) {
+      case Units.Y:
+        return that > year();
+        break;
+      case Units.M:
+        return that > month();
+        break;
+      case Units.D:
+        return that > date();
+        break;
+      case Units.H:
+        return that > hour();
+        break;
+      case Units.MIN:
+        return that > minute();
+        break;
+      default:
+    }
   }
 
   /**
@@ -270,7 +343,7 @@ class DayDart {
       case Units.D:
         return clone(_date.add(new Duration(days: num)));
         break;
-      case Units.H: 
+      case Units.H:
         return clone(_date.add(new Duration(hours:num)));
         break;
       case Units.MIN:
@@ -370,7 +443,7 @@ class DayDart {
       case Units.D:
         return clone(_date.subtract(new Duration(days: num)));
         break;
-      case Units.H: 
+      case Units.H:
         return clone(_date.subtract(new Duration(hours:num)));
         break;
       case Units.MIN:
