@@ -1,6 +1,6 @@
 name: flutter_daydart
 description: 具备 Moment.js 一样 API 的时间处理库.
-version: 0.0.2
+version: 0.0.3
 author: icepy<xiangwenwe@gmail.com>
 homepage: https://github.com/icepy/flutter_daydart
 repository: https://github.com/icepy/flutter_daydart
